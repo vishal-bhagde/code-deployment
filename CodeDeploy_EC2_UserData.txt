@@ -1,0 +1,66 @@
+#!/bin/bash
+sudo yum -y update
+sudo yum -y install ruby
+sudo yum -y install wget
+sudo yum -y install maven
+sudo yum -y install git
+sudo yum -y erase java-1.7.0-openjdk.x86_64
+ tomcat8.5=
+sudo yum -y install java-1.8.0-openjdk-devel
+
+sudo yum -y install tomcat8
+amazon-linux-extras list
+sudo amazon-linux-extras install tomcat8.5 -y
+sudo systemctl start tomcat
+cd /usr/share/tomcat/webapps
+sudo mkdir ROOT
+cd ROOT/
+sudo vi index.html #add some HTML content
+
+
+cd /home/ec2-user
+wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+wget https://aws-codedeploy-ap-south-1.s3.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+
+
+sudo service codedeploy-agent status
+
+sudo java -version
+
+sudo service tomcat status
+sudo su -
+sudo ps -ef | grep java
+		-Dcatalina.home=/usr/share/tomcat
+cd /usr/share/tomcat/webapps
+mkdir ROOT
+cat > ROOT/index.html
+
+git PAT: 	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
+
+git clone https://x-access-token:<token>@github.com/owner/repo.git
+
+https://oauth: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@github.com/NubeEra-Samples/codecommit-demo.git
+
+cat /var/log/aws/codedeploy-agent/codedeploy-agent.log
+
+
+
+#!/bin/bash -x
+REGION=$(curl 169.254.169.254/latest/meta-data/placement/availability-zone/ | sed 's/[a-z]$//') &&
+sudo apt-get update -y &&
+sudo apt-get install -y python-pip &&
+sudo apt-get install -y ruby &&
+sudo apt-get install -y wget &&
+cd /home/admin &&
+wget https://aws-codedeploy-$REGION.s3.amazonaws.com/latest/install &&
+chmod +x ./install &&
+sudo ./install auto &&
+sudo apt-get remove -y wget &&
+sudo service codedeploy-agent start
+
+
+To Check Error
+https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-view-logs.html#deployments-view-logs-instance
+
